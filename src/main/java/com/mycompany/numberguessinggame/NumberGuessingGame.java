@@ -19,39 +19,42 @@ public class NumberGuessingGame {
         Scanner scanner = new Scanner(System.in);
 
         int rounds = 0;
+        try {
+            do {
+                System.out.println("🟢 1. Start Game ");
+                System.out.println("🔴 2. Quit ");
+                rounds = scanner.nextInt();
+                if (rounds == 1) {
+                    game.setRendomNumber(game.rendomNumbers(1, 100));
 
-        System.out.println("🟢 1. Start Game ");
-        System.out.println("🔴 2. Quit ");
-        
-        rounds = scanner.nextInt();
-        
-        while (rounds < 2) {
-            game.setRendomNumber(game.rendomNumbers(1, 100));
-            
-            int count = 1;
-            System.out.print("😁 Hi!");
-            while (count <= 3) {
-                System.out.print(" Guess the Number: ");
-                int number = scanner.nextInt();
-                game.matchNumbers(game.getRendomNumber(), number, count);
-                
-                if (number == game.getRendomNumber()) {
-                    count = 4;
-                } else {
-                    count++;
+                    int count = 1;
+                    System.out.print("😁 Hi!");
+                    while (count <= 3) {
+                        System.out.print(" Guess the Number: ");
+                        int number = scanner.nextInt();
+                        game.matchNumbers(game.getRendomNumber(), number, count);
+
+                        if (number == game.getRendomNumber()) {
+                            count = 4;
+                        } else {
+                            count++;
+                        }
+                    };
+
+                    System.out.println("  ");
+                    System.out.println("============================ ");
+                    System.out.println("✅ Number is: " + game.getRendomNumber());
+                    System.out.println("💰 Points: " + game.getPoints());
+                    System.out.println("============================ ");
+                    System.out.println("  ");
+                } else if (rounds != 2) {
+                    System.out.println("🚫 Invalid choice. Please enter 1 to Start Game or 2 to Quit.");
                 }
-            };
-            
-            System.out.println("  ");
-            System.out.println("============================ ");
-            System.out.println("✅ Number is: " + game.getRendomNumber());
-            System.out.println("💰 Points: " + game.getPoints());
-            System.out.println("============================ ");
-            System.out.println("  ");
-            System.out.println("🟢 1. Next Round ");
-            System.out.println("🔴 2. Quit ");
-            rounds = scanner.nextInt();
-        };
+            } while (rounds != 2);
+            System.out.println("🤩 Thanks for playing Number guessing game 🤩");
 
+        } catch (Exception e) {
+            System.out.println("🚫 Error: You Can't Enter a String");
+        }
     }
 }
